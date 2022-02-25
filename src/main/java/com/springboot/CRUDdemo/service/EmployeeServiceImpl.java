@@ -1,55 +1,56 @@
 package com.springboot.CRUDdemo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.springboot.CRUDdemo.dao.EmployeeDAO;
+import com.springboot.CRUDdemo.dao.EmployeeRepository;
 import com.springboot.CRUDdemo.entity.Employee;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-	private EmployeeDAO employeeDAO;
+	private EmployeeRepository employeeRepository;
 
-	/*Parameter 0 of constructor in com.springboot.CRUDdemo.service.EmployeeServiceImpl required a single bean, but 2 were found:
-	 *- employeeDAOHibernateImpl: and - employeeDAOJpaImpl:
-	 * Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
-	 * 
-	 * Added @Qualifier annotation with lower case class name
-	 */
-	
 	@Autowired
-	public EmployeeServiceImpl(@Qualifier("employeeDAOJpaImpl") EmployeeDAO theEmployeeDAO) {
-		employeeDAO = theEmployeeDAO;
+	public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
+		employeeRepository = theEmployeeRepository;
 	}
 
+	// remove @Transactional since JpaRepository provides this functionality
 	@Override
-	@Transactional
 	public List<Employee> findAll() {
-		return employeeDAO.findAll();
+		return employeeRepository.findAll();
 	}
 
 	@Override
-	@Transactional
 	public Employee findById(int theId) {
-		return employeeDAO.findById(theId);
+		Optional<Employee> result = employeeRepository.findById(theId);
+
+		Employee theEmployee = null;
+		
+		if (result.isPresent()) {
+			theEmployee = result.get();
+		} else {
+			// we didn't find the employee
+			throw new RuntimeException("Did not find employee id - " + theId);
+		}
+		
+		return theEmployee;
 	}
 
 	@Override
-	@Transactional
 	public void save(Employee theEmployee) {
-		employeeDAO.save(theEmployee);
+		employeeRepository.save(theEmployee);
 
 	}
 
 	@Override
-	@Transactional
 	public void deleteById(int theId) {
-		employeeDAO.deleteById(theId);
+		employeeRepository.deleteById(theId);
 	}
 
 }
