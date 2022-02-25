@@ -1,0 +1,5 @@
+https://start.spring.io/
+SpringBoot version select
+Group: com.name
+Artifact: cruddemo
+Dependencies: Spring web starter, Spring Data JPA, Spring Boot DevTools, MySQL Driver
