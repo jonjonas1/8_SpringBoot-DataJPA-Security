@@ -1,15 +1,18 @@
 package com.springboot.CRUDdemo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="employee")
-public class Employee {
+@Table(name="student")
+public class Student {
 	// define fields
 	
 		@Id
@@ -26,19 +29,30 @@ public class Employee {
 		@Column(name="email")
 		private String email;
 		
+//		@OneToOne(cascade = CascadeType.ALL)
+//		@JoinColumn(name = "role_id") //column name on Student table refers to Role table
+//		private Role role;
+		
 		// define constructors
 		
-		public Employee() {
+		public Student() {
 			
 		}
 
-		public Employee(String firstName, String lastName, String email) {
+		public Student(String firstName, String lastName, String email) {
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.email = email;
 		}
 
-		// define getter/setter
+//		 define getter/setter
+//		public Role getRole() {
+//			return role;
+//		}
+//		public void setRole(Role role) {
+//			this.role = role;
+//		}
+		
 		public int getId() {
 			return id;
 		}
@@ -71,9 +85,11 @@ public class Employee {
 			this.email = email;
 		}
 
-		// define tostring
+		
+
 		@Override
 		public String toString() {
-			return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+			return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+					+ ", role=" + "]";
 		}
 }

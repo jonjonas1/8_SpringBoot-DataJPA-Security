@@ -5,4 +5,13 @@ Artifact: cruddemo
 Dependencies: Spring web starter, Spring Data JPA, Spring Boot DevTools, MySQL Driver
 
 Run: com.springboot.CRUDdemo> with java application
-On browser navigate to: http://localhost:8080/api/employees/
+On browser navigate to: http://localhost:8080/api/students/
+
+// Spring security. by adding just below dependency in pom.xml spring boot automatically
+provides authentication UI for crud operations.
+How to user user/password: just run the application and in consol/logs there should be
+Using generated security password: 0f526f3............. (password)
+user is default is: user
+  =========  request from postman =============
+  Authorization tab: select Basic Auth, and pass user(default) and password(from logs/console)
+  
