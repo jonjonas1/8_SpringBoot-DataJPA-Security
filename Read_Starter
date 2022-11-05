@@ -5,13 +5,22 @@ Artifact: cruddemo
 Dependencies: Spring web starter, Spring Data JPA, Spring Boot DevTools, MySQL Driver
 
 Run: com.springboot.CRUDdemo> with java application
-On browser navigate to: http://localhost:8080/api/students/
+On browser navigate to: http://localhost:8081/api/students/
 
 // Spring security. by adding just below dependency in pom.xml spring boot automatically
 provides authentication UI for crud operations.
-How to user user/password: just run the application and in consol/logs there should be
+		<artifactId>spring-boot-starter-security</artifactId>
+		
+* if there is no custom username/password in application.properties then below		
+what is username/password: just run the application and in consol/logs there should be
 Using generated security password: 0f526f3............. (password)
-user is default is: user
+username default is: "user"
+
   =========  request from postman =============
   Authorization tab: select Basic Auth, and pass user(default) and password(from logs/console)
+  
+  =========== Implementing swagger documentations ==============
+  after adding two pom dependencies springfox-swagger2 and ui
+  we add SwaggerConfig class. (did not work disabled class from run)
+  http://localhost:8081/swagger-ui.html
   
