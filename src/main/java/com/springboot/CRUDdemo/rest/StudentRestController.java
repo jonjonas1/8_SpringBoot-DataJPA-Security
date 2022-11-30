@@ -29,7 +29,12 @@ public class StudentRestController {
 
 	@GetMapping("/admin")
 	public String admin() {
-		return "<h2>Welcome to Admin page</h2>";
+		return "<h2>Welcome to ADMIN page</h2>";
+	}
+	
+	@GetMapping("/user")
+	public String user() {
+		return "<h2>Welcome to USER page</h2>";
 	}
 	
 	// expose "/employees" and return list of employees

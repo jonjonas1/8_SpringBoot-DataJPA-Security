@@ -23,4 +23,3 @@ username default is: "user"
   after adding two pom dependencies springfox-swagger2 and ui
   we add SwaggerConfig class. (did not work disabled class from run)
   http://localhost:8081/swagger-ui.html
-  
