@@ -16,7 +16,7 @@ import com.springboot.CRUDdemo.entity.Student;
 import com.springboot.CRUDdemo.service.StudentService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/student")
 public class StudentRestController {
 
 
